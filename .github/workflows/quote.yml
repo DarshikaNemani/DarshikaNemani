@@ -1,0 +1,23 @@
+name: 🧠 Update Quote
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Every day at midnight
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Get quote and update README
+        run: |
+          curl https://zenquotes.io/api/random > quote.json
+          quote=$(cat quote.json | jq -r '.[0].q + " — " + .[0].a')
+          awk -v q="$quote" '/## ✨ Quote of the Day/{print; print "> _"q"_"; next}1' README.md > temp.md && mv temp.md README.md
+      - name: Commit and push
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git commit -am "Update quote"
+          git push
