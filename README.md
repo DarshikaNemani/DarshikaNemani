@@ -1,5 +1,10 @@
 ## Hi there 👋
 
+### ✨ Quote of the Moment
+
+![Quote](https://zenquotes.io/api/random/zenquote.svg)
+
+
 <!--
 **DarshikaNemani/DarshikaNemani** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
