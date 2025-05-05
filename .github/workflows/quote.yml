@@ -1,23 +1,35 @@
-name: 🧠 Update Quote
+name: Update README with Quote
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Every day at midnight
+    - cron: '0 0 * * *' # Runs every day at midnight UTC
   workflow_dispatch:
 
 jobs:
   update-readme:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Get quote and update README
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install jq
+        run: sudo apt-get install jq
+
+      - name: Get random quote
+        id: quote
         run: |
-          curl https://zenquotes.io/api/random > quote.json
-          quote=$(cat quote.json | jq -r '.[0].q + " — " + .[0].a')
-          awk -v q="$quote" '/## ✨ Quote of the Day/{print; print "> _"q"_"; next}1' README.md > temp.md && mv temp.md README.md
+          curl -s https://api.quotable.io/random > quote.json
+          echo "::set-output name=text::$(jq -r '.content' quote.json)"
+          echo "::set-output name=author::$(jq -r '.author' quote.json)"
+
+      - name: Update README
+        run: |
+          sed -i '/<!-- QUOTE_START -->/,/<!-- QUOTE_END -->/c\<!-- QUOTE_START -->\n> "${{ steps.quote.outputs.text }}"\n\n— **${{ steps.quote.outputs.author }}**\n<!-- QUOTE_END -->' README.md
+
       - name: Commit and push
         run: |
-          git config --global user.name 'github-actions'
-          git config --global user.email 'github-actions@github.com'
-          git commit -am "Update quote"
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add README.md
+          git commit -m "🤖 Update quote of the day" || echo "No changes to commit"
           git push
