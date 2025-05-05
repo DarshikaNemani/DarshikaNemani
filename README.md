@@ -2,6 +2,9 @@
 
 ## ✨ Quote of the Day
 > _Loading inspirational thoughts..._
+<!-- QUOTE_START -->
+Previous quote will be replaced.
+<!-- QUOTE_END -->
 
 
 
