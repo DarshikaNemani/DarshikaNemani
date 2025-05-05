@@ -1,8 +1,8 @@
 ## Hi there 👋
 
-### ✨ Quote of the Moment
+## ✨ Quote of the Day
+> _Loading inspirational thoughts..._
 
-![Quote](https://zenquotes.io/api/random/zenquote.svg)
 
 
 <!--
