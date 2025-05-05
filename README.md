@@ -1,10 +1,13 @@
-## Hi there 👋
+# Hey there! 👋
 
-## ✨ Quote of the Day
-> _Loading inspirational thoughts..._
+Welcome to my GitHub profile!
+
 <!-- QUOTE_START -->
-Previous quote will be replaced.
+> “Loading a beautiful quote...”
 <!-- QUOTE_END -->
+
+✨ Stay inspired!
+
 
 
 
