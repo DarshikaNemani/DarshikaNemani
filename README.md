@@ -2,12 +2,6 @@
 
 Welcome to my GitHub profile!
 
-<!-- QUOTE_START -->
-> “Loading a beautiful quote...”
-<!-- QUOTE_END -->
-
-✨ Stay inspired!
-
 
 
 
